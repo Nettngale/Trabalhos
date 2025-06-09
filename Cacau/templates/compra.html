@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Compra</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <header>
+        <div class="center">
+          <img src="imagens/imagecacaushow.png" alt="Logo da Cacau Show">
+          <hr>
+          <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="/historia">História</a></li>
+            <li><a href="/falecnsc">Fale Conosco</a></li>
+          </ul>
+        </div>
+      </header>
+    </nav>
+
+    <div class="formulario-container">
+      <a id="imagem-produto" class="formulario"></a>
+      <div class="formulario">
+        <h2>Dados da Compra</h2>
+        
+        <form action="/comprar" method="POST">
+          
+          <label for="nome">Nome completo:</label>
+          <input type="text" id="nome" name="nome" required>
+
+          <label for="endereco">Endereço:</label>
+          <input type="text" id="endereco" name="endereco" required>
+
+          <label for="cartao">Número do Cartão:</label>
+          <input type="text" id="cartao" name="cartao" required>
+
+          <label for="cvv">Código CVV:</label>
+          <input type="text" id="cvv" name="cvv" required>
+          
+
+          <button type="submit">Enviar</button>
+        </form>
+        
+      </div>
+      
+        
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const produto = params.get('produto');
+
+    if (produto) {
+      document.querySelector('.formulario h2').textContent = 'Compra: ' + produto;
+
+      const form = document.querySelector('form');
+      const inputProduto = document.createElement('input');
+      inputProduto.type = 'hidden';
+      inputProduto.name = 'produto';
+      inputProduto.value = produto;
+      form.appendChild(inputProduto);
+
+      const imagemDiv = document.getElementById('imagem-produto');
+      let imagemSrc = '';
+
+      if (produto.includes('Trufado')) {
+        imagemSrc = 'imagens/panetone_trufado.png';
+      } else if (produto.includes('Tradicional')) {
+        imagemSrc = 'imagens/panetonetradicional.png';
+      } else if (produto.includes('Vegano')) {
+        imagemSrc = 'imagens/panetonevegano.png';
+      }
+      if (produto.includes('Leite')) {
+        imagemSrc = 'imagens/aoleite.png';
+      } else if (produto.includes('Zero')) {
+        imagemSrc = 'imagens/trufazero.png';
+      } else if (produto.includes('Pistache')) {
+        imagemSrc = 'imagens/lanut_pistache.png';
+      }
+      if (produto.includes('Pequena')) {
+        imagemSrc = 'imagens/cestapequena.png';
+      } else if (produto.includes('Média')) {
+        imagemSrc = 'imagens/cestamedia.png';
+      } else if (produto.includes('Grande')) {
+        imagemSrc = 'imagens/cestagrande.png';
+      }
+      
+
+      if (imagemSrc) {
+        imagemDiv.innerHTML = `<img src="${imagemSrc}" alt="${produto}">`;
+      }
+    }
+  </script>
+</body>
+</html>

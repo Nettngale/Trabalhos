@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu Trufas</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <div class="position-button">
+    <div class="menu-dropdown">
+      <button class="menu-button">Selecione sua Opção</button>
+      <div class="menu-opcoes">
+        <a href="/comprar?produto=Trufa%20ao%20Leite" class="produto-link" data-produto="Trufa ao Leite">Trufa ao Leite</a>
+        <a href="/comprar?produto=Trufa%20Zero" class="produto-link" data-produto="Trufa Zero Açucar">Trufa Zero Açucar</a>
+        <a href="/comprar?produto=Trufa%20Pistache" class="produto-link" data-produto="Trufa LaNut Pistache">Trufa LaNut Pistache</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  document.querySelectorAll('.produto-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault(); // impede o redirecionamento automático
+
+      const produto = encodeURIComponent(link.dataset.produto);
+
+      // Verifica se o usuário está logado
+      fetch('/api/verificar-login', { credentials: 'include' })
+        .then(res => {
+          if (res.status === 200) {
+            // Logado: redireciona para compra
+            window.location.href = `/comprar?produto=${produto}`;
+          } else {
+            // Não logado: redireciona para login
+            window.location.href = '/login';
+          }
+        })
+        .catch(err => {
+          console.error("Erro ao verificar login:", err);
+          window.location.href = '/login';
+        });
+    });
+  });
+</script>
+
+</html>
