@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Doadores</title>
+</head>
+<body>
+    <h1>Cadastro de Doadores</h1>
+    <form method="post" action="salvadoador">
+        <label>Nome</label>
+        <input type="text" name="nome">
+        <br>
+        <br>
+        <label>Telefone</label>
+        <input type="text" name="tel">
+        <br>
+        <br>
+        <label>E-mail</label>
+        <input type="email" name="email">
+        <br>
+        <br>
+        <label>Tipo Sanguineo</label>
+        <select name="tipo">
+            <option value="o+">O+</option>
+            <option value="ab+">AB+</option>
+            <option value="ab-">AB-</option>
+            <option value="b+">B+</option>
+            <option value="b-">B-</option>
+            <option value="o-">O-</option>
+            <option value="a-">A-</option>
+            <option value="a+">A+</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit" value="Salvar">
+        <input type="reset" value="Limpar"> 
+    </form>
+</body>
+</html>
