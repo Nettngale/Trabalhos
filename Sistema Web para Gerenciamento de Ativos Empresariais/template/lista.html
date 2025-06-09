@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Ativos</title>
+    <link rel="stylesheet" href="estilo/style.css">
+</head>
+<body>
+    <form method="post" action="salvaativo"></form>
+        <table class="table table-striped ">
+            <tr>
+                <th>ID</th>
+                <th>Ativo</th>
+            </tr>
+        
+            <tbody>
+                {{ range .}}
+                <tr>
+                    <td>{{.Id}}</td>
+                    <td>{{.Nome}}</td>
+                </tr>
+                {{end}}
+            </tbody> 
+        </table>
+    
+        <div class="input">
+            <input type="text" name="nome">
+        </div>
+    
+    
+        <div class="centerbutton">
+            <button type="submit" value="salvar">Adcionar</button>
+            <button type="reset" value="limpar">Remover</button>
+        </div>
+    
+    </form>
+
+</body>
+</html>
