@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Adopt - Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Cadastro de Animais</h1>
+  <select id="tipo">
+    <option value="equino">Equinos</option>
+    <option value="felino">Felinos</option>
+    <option value="canino">Caninos</option>
+    <option value="ave">Aves</option>
+    <option value="aquatico">Aquáticos</option>
+  </select>
+  <input type="number" id="quantidade" placeholder="Quantidade" />
+  <input type="date" id="data" />
+  <select id="operacao">
+    <option value="entrada">Entrada</option>
+    <option value="saida">Saída</option>
+  </select>
+  <br />
+  <button onclick="processar()">Processar</button>
+  <br /><br />
+  <button onclick="location.href='grafico-pizza.html'">Ver gráfico de pizza</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
