@@ -1,36 +1,16 @@
-const registros = JSON.parse(localStorage.getItem("registros") || "[]");
+const porcentagens = JSON.parse(sessionStorage.getItem("porcentagens"));
 
-const totalPorTipo = {
-  equino: 0,
-  felino: 0,
-  canino: 0,
-  ave: 0,
-  aquatico: 0
-};
+const ctx = document.getElementById("graficoPizza").getContext("2d");
+const labels = Object.keys(porcentagens);
+const valores = Object.values(porcentagens);
 
-let totalAtual = 0;
-
-registros.forEach(({ tipo, quantidade, operacao }) => {
-  if (operacao === "entrada") {
-    totalPorTipo[tipo] += quantidade;
-    totalAtual += quantidade;
-  } else {
-    totalPorTipo[tipo] -= quantidade;
-    totalAtual -= quantidade;
-  }
-});
-
-const labels = Object.keys(totalPorTipo);
-const data = labels.map(t => totalPorTipo[t]);
-const backgroundColors = ['#ff6384', '#36a2eb', '#ffce56', '#8e44ad', '#2ecc71'];
-
-new Chart(document.getElementById("graficoPizza"), {
+new Chart(ctx, {
   type: "pie",
   data: {
     labels,
     datasets: [{
-      data,
-      backgroundColor: backgroundColors
+      data: valores,
+      backgroundColor: ['#f39c12', '#2ecc71', '#3498db', '#9b59b6', '#e74c3c']
     }]
   }
 });
